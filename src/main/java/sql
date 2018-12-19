@@ -1,0 +1,127 @@
+Create table ServerDetails(
+serverID varchar(500),
+serverOwner varchar(255),
+serverName varchar(255),
+serverMemberCount varchar(255),
+serverPremium boolean default false,
+pubgSetup boolean default false,
+fortniteSetup boolean default false,
+realmRoyaleSetup boolean default false,
+
+constraint pk_ServerDetails primary key (serverID)
+);
+
+ALTER TABLE ServerDetails ADD PREFIX VARCHAR(1) DEFAULT '!';
+
+CREATE table Users(
+  userID varchar(500),
+  serverID varchar(500),
+  userDiscordName varchar(255),
+  userDiscordNickName varchar(255),
+
+  constraint pk_UserDetails primary key (userID)
+);
+
+CREATE table PUBG_Users(
+
+ID varchar(500),
+serverID varchar(500),
+OPGGID varchar(500),
+Region varchar(255),
+PlayerName varchar(255),
+GameMode varchar(255),
+Rank varchar(255),
+Rating varchar(255),
+ADR varchar(255),
+KDR varchar(255),
+lastUpdateDate varchar(255),
+squadID varchar(255),
+duoID varchar(255),
+
+constraint pk_pubg_users primary key (ID)
+
+);
+
+ALTER TABLE PUBG_Users ADD squadID int DEFAULT 0;
+ALTER TABLE PUBG_Users ADD duoID int DEFAULT 0;
+
+create table pubg_Settings(
+serverID varchar(500),
+defaultRegion varchar(255),
+mode varchar(255),
+renameUsers boolean DEFAULT false,
+tagUsers boolean DEFAULT false,
+
+constraint pk_pubg_Settings primary key (serverID)
+
+);
+
+Create table serverOwners(
+  ownerEmail varchar(500),
+  serverID varchar(500),
+  constraint pk_owner primary key (ownerEmail)
+);
+
+Create table subscriptions(
+  ownerEmail varchar(500),
+  serverID varchar(500),
+  customerID varchar(500),
+  startedDate varchar(500),
+  endDate varchar(500),
+  status varchar(500),
+  constraint pk_subOwner primary key (ownerEmail)
+);
+
+ALTER TABLE SUBSCRIPTIONS ADD SUBID VARCHAR(255);
+
+Create table botstats (
+
+  SERVERCOUNT int,
+  USERCOUNT int,
+    constraint pk_serverCount primary key (SERVERCOUNT)
+);
+
+Create TABLE approved (
+  SERVERID varchar(500),
+  email varchar(200),
+
+  constraint  pk_approvedID primary key (SERVERID)
+);
+
+create table pubg_tournament (
+  id int,
+  serverID varchar(255),
+  name varchar (255),
+  gameMode varchar (5),
+  maxPlayers varchar(255),
+  type varchar(255),
+  status varchar(255),
+
+  constraint pk_id primary key (id)
+
+
+);
+
+create table pubg_squad(
+
+  id int,
+  teamName varchar(255),
+  leaderID varchar(255),
+  tournamentID int,
+
+  constraint pk_squadID primary key (id)
+);
+
+
+create table pubg_duo(
+
+  id int,
+  teamName varchar(255),
+  leaderID varchar(255),
+  tournamentID int,
+
+  constraint pk_duoID primary key (id)
+)
+
+
+
